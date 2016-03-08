@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="411.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MenuController">
+   <children>
+      <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="600.0">
+        <menus>
+          <Menu fx:id="menuFile" mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="menuItemNew" mnemonicParsing="false" onAction="#menuNewOnAction" text="New" />
+                  <MenuItem fx:id="menuItemOpen" mnemonicParsing="false" onAction="#menuOpenOnAction" text="Open" />
+                  <MenuItem fx:id="menuItemSave" mnemonicParsing="false" onAction="#menuSaveOnAction" text="Save" />
+                  <MenuItem fx:id="menuItemClose" mnemonicParsing="false" onAction="#menuCloseOnAction" text="Close" />
+            </items>
+          </Menu>
+          <Menu fx:id="menuTools" mnemonicParsing="false" text="Tools">
+            <items>
+              <MenuItem fx:id="menuItemCompile" mnemonicParsing="false" text="Compile" />
+                  <MenuItem fx:id="menuItemSaveAndCompile" mnemonicParsing="false" text="Save and Compile" />
+                  <MenuItem fx:id="menuItemDebug" mnemonicParsing="false" text="Debug" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane fx:id="tabPanePrograms" layoutY="25.0" prefHeight="241.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" />
+      <TabPane fx:id="tabPaneInformation" layoutY="264.0" prefHeight="147.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="tabLog" text="Log">
+            <content>
+              <AnchorPane fx:id="anchorPaneLog" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="listViewLog" layoutY="-1.0" prefHeight="119.0" prefWidth="600.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="tabConsole" text="Console">
+              <content>
+                <AnchorPane fx:id="anchorPaneConsole" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="listViewConsole" prefHeight="119.0" prefWidth="600.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="tabDebug" text="Debug">
+              <content>
+                <AnchorPane fx:id="anchorPaneDebug" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="listViewDebug" prefHeight="119.0" prefWidth="600.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</Pane>
