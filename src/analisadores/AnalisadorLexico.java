@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import automatos.AutomatoOperadores;
 import tabelas.TabelaDeSimbolos;
+import util.PalavraReconhecida;
 
 public class AnalisadorLexico {
 	private static AnalisadorLexico instance;
@@ -14,18 +15,19 @@ public class AnalisadorLexico {
 		return instance;
 	}
 	public ArrayList<String> retornaTokens(String palavra){
+		PalavraReconhecida palavraReconhecida;
 		int characterCounter = 0;
-		String palavraReconhecida;
 		ArrayList<String> tokens = new ArrayList<String>();
-		while(characterCounter++ < palavra.length()){
+		while(characterCounter < palavra.length()){
 			switch (palavra.charAt(characterCounter)){
 				case '>'|'<'|'=':
 					palavraReconhecida = AutomatoOperadores.getInstance().
 						reconhecePalavra(palavra, characterCounter);
 					tokens.add(TabelaDeSimbolos.getInstance().
-						getSimbolo(palavraReconhecida));
+						getSimbolo(palavraReconhecida.getPalavra()));
+					characterCounter = palavraReconhecida.getPosicao();
 				case '\n':
-					continue;
+					++characterCounter;
 					
 			}
 			

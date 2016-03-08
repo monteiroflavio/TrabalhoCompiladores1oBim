@@ -3,6 +3,7 @@ package automatos;
 import automatos.tad.Automato;
 import exceptions.EstadoNaoExistenteException;
 import exceptions.TransicaoNaoExistenteException;
+import util.PalavraReconhecida;
 
 public class AutomatoOperadores {
 	private Automato automato;
@@ -44,7 +45,7 @@ public class AutomatoOperadores {
 	public static AutomatoOperadores getInstance(){
 		return instance;
 	}
-	public String reconhecePalavra(String palavra, int posicao){
+	public PalavraReconhecida reconhecePalavra(String palavra, int posicao){
 		String palavraReconhecida = new String();
 		int estadoAtualId = 0;
 		while(posicao++ < palavra.length()){
@@ -52,12 +53,12 @@ public class AutomatoOperadores {
 				estadoAtualId = instance.automato.transita(
 						palavra.charAt(posicao), estadoAtualId);
 				palavraReconhecida += palavra.charAt(posicao);
-			} catch (TransicaoNaoExistenteException e) {
-				
+			} catch (TransicaoNaoExistenteException e){
+				break;
 			}
-			if(instance.automato.getEstadoFinal(estadoAtualId)!=null)
-				return palavraReconhecida;
+			if(instance.automato.isEstadoFinal(estadoAtualId))
+				break;
 		}
-		return palavraReconhecida;
+		return new PalavraReconhecida(palavraReconhecida, posicao);
 	}
 }

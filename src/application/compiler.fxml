@@ -27,7 +27,7 @@
           </Menu>
           <Menu fx:id="menuTools" mnemonicParsing="false" text="Tools">
             <items>
-              <MenuItem fx:id="menuItemCompile" mnemonicParsing="false" text="Compile" />
+              <MenuItem fx:id="menuItemCompile" mnemonicParsing="false" onAction="#menuCompileOnAction" text="Compile" />
                   <MenuItem fx:id="menuItemSaveAndCompile" mnemonicParsing="false" text="Save and Compile" />
                   <MenuItem fx:id="menuItemDebug" mnemonicParsing="false" text="Debug" />
             </items>

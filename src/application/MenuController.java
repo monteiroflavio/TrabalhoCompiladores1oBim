@@ -27,6 +27,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import util.CompilerController;
 
 public class MenuController implements Initializable {
 	// Controller da tela de interação com o usuário.
@@ -218,5 +219,13 @@ public class MenuController implements Initializable {
 	@FXML
 	public void menuCloseOnAction() {
 		Platform.exit();
+	}
+	
+	@FXML
+	public void menuCompileOnAction(){
+		TextArea textArea = (TextArea)this.tabPanePrograms.
+			getSelectionModel().getSelectedItem().getContent();
+		System.out.println(CompilerController.getInstance().
+				getTokens(textArea.getText()));
 	}
 }
