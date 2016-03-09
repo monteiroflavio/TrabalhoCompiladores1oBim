@@ -10,6 +10,7 @@ public class Vertice {
 	}
 	public Vertice(int id, String rotulo){
 		this(id);
+		this.nome = "q"+id;
 		this.rotulo = rotulo;
 	}
 	public int getId(){

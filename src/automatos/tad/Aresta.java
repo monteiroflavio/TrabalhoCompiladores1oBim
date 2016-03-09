@@ -4,7 +4,6 @@ public class Aresta {
 	private int id;
 	private Vertice verticeOrigem;
 	private Vertice verticeDestino;
-	@SuppressWarnings("unused")
 	private String simbolo;
 	public Aresta(Vertice verticeOrigem, Vertice verticeDestino,
 					String simbolo, int id){
@@ -23,7 +22,7 @@ public class Aresta {
 		return this.verticeDestino;
 	}
 	public String getSimbolo(){
-		return this.getSimbolo();
+		return this.simbolo;
 	}
 	public boolean equals(Aresta aresta){
 		return this.verticeOrigem == aresta.getOrigem() &&

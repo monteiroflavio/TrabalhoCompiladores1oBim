@@ -6,10 +6,10 @@ import analisadores.AnalisadorLexico;
 
 public class CompilerController {
 	private static CompilerController instance;
-	private CompilerController(){
-		instance = new CompilerController();
-	}
+	private CompilerController(){}
 	public static CompilerController getInstance(){
+		if(instance == null)
+			instance = new CompilerController();
 		return instance;
 	}
 	public List<String> getTokens(String palavra){

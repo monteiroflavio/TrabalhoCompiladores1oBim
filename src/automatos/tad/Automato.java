@@ -12,9 +12,13 @@ public class Automato {
 	private HashMap<Integer, Aresta> transicoes;
 	
 	public void addEstado(int id){
+		if(estados == null)
+			estados = new HashMap<Integer, Vertice>();
 		this.estados.put(id, new Vertice(id));
 	}
 	public void addEstadoFinal(int id) throws EstadoNaoExistenteException{
+		if(estadosFinais == null)
+			estadosFinais = new HashMap<Integer, Vertice>();
 		if(!this.estados.containsKey(id))
 			throw new EstadoNaoExistenteException(id);
 		this.estadosFinais.put(id, this.estados.get(id));
@@ -27,6 +31,8 @@ public class Automato {
 	public void addTransicao(Vertice verticeOrigem, Vertice verticeDestino,
 								String simbolo, int id) 
 										throws EstadoNaoExistenteException{
+		if(this.transicoes == null)
+			this.transicoes = new HashMap<Integer, Aresta>();
 		if(!this.estados.containsKey(verticeDestino.getId())||
 				!this.estados.containsKey(verticeOrigem.getId()))
 			throw new EstadoNaoExistenteException(id);
