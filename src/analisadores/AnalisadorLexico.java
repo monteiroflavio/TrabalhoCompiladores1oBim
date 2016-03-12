@@ -27,9 +27,8 @@ public class AnalisadorLexico {
 					tokens.add(TabelaDeSimbolos.getInstance().
 						getSimbolo(palavraReconhecida.getPalavra()));
 					characterCounter = palavraReconhecida.getPosicao();
-				case '\n':
-					++characterCounter;
 			}
+			
 			++characterCounter;
 		}
 		return tokens;

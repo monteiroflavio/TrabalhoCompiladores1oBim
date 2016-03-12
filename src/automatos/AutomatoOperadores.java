@@ -48,7 +48,7 @@ public class AutomatoOperadores {
 	public PalavraReconhecida reconhecePalavra(String palavra, int posicao){
 		String palavraReconhecida = new String();
 		int estadoAtualId = 0;
-		while(posicao++ < palavra.length()){
+		while(posicao < palavra.length()){
 			try {
 				estadoAtualId = instance.automato.transita(
 						palavra.charAt(posicao), estadoAtualId);
@@ -58,6 +58,7 @@ public class AutomatoOperadores {
 			}
 			if(instance.automato.isEstadoFinal(estadoAtualId))
 				return new PalavraReconhecida(palavraReconhecida, posicao);
+			++posicao;
 		}
 		return new PalavraReconhecida(palavraReconhecida, posicao);
 	}

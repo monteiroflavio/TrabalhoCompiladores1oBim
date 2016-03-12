@@ -62,15 +62,18 @@ public class Automato {
 	}
 	public int transita(char simbolo, int estadoAtualId) 
 			throws TransicaoNaoExistenteException{
+		int estadoAtualIdInicial = estadoAtualId;
 		for(Integer transicaoId : this.transicoes.keySet()){
 			if((this.transicoes.get(transicaoId).getOrigem().
 					getId()==estadoAtualId)
-			&& (this.transicoes.get(transicaoId).getSimbolo().equals(simbolo)))
+			&& (this.transicoes.get(transicaoId).getSimbolo().equals(simbolo))){
 				estadoAtualId = this.transicoes.get(transicaoId).
 					getDestino().getId();
-			else
-				throw new TransicaoNaoExistenteException(estadoAtualId,simbolo);
+				break;
+			}
 		}
+		if(estadoAtualIdInicial ==  estadoAtualId)
+			throw new TransicaoNaoExistenteException(estadoAtualId,simbolo);
 		return estadoAtualId;
 	}
 }
