@@ -73,6 +73,7 @@ public class MenuController implements Initializable {
 	AnchorPane anchorDebug = new AnchorPane();
 	@FXML
 	ListView listViewDebug = new ListView();
+	int newFileCounter;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -101,7 +102,7 @@ public class MenuController implements Initializable {
 				public void handle(Event event) {
 					if (!tab.getText().contains("*")) {
 						String aux = tab.getText();
-						// tab.setText("*" + aux);
+						tab.setText("*" + aux);
 					}
 				}
 
@@ -154,7 +155,8 @@ public class MenuController implements Initializable {
 		textArea.setId("newTextArea");
 
 		tab = new Tab();
-		tab.setText("*New File.lalg");
+		tab.setText("*New File "+ ++newFileCounter+".lalg");
+		tab.setId("0");
 		tab.setContent(textArea);
 		tab.setClosable(true);
 		tab.setOnCloseRequest(new EventHandler<Event>() {
@@ -187,32 +189,47 @@ public class MenuController implements Initializable {
 	}
 
 	// Salvar arquivo
-	@FXML
 	public void menuSaveOnAction() {
 		
 		TextArea textArea = (TextArea) this.tabPanePrograms.getSelectionModel().getSelectedItem().getContent();
 
 		File file = new File(this.tabPanePrograms.getSelectionModel().getSelectedItem().getId());
-		boolean exists = file.exists();
 		
-		if (exists) {
-			System.out.println("existe");
+		if (!this.tabPanePrograms.getSelectionModel().getSelectedItem().getId().equals("0")) {
+			FileWriter fileWriter;
+			try {
+				fileWriter = new FileWriter(file);
+				fileWriter.write(textArea.getText());
+				fileWriter.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} 
 		
-		else {
-			FileChooser fileChooser = new FileChooser();
-			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("LALG files (*.lalg)", "*.lalg");
-			fileChooser.getExtensionFilters().add(extFilter);
-			file = fileChooser.showSaveDialog(null);
+		else{
 
 			try {
-				FileWriter fileWriter = new FileWriter(file);
-				//FileWriter.write(textArea.getText());	LINHA QUE TA DANDO RUIM
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			FileChooser fileChooser = new FileChooser();
+			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("LALG files (*.lalg)", "*.lalg");
+			fileChooser.setInitialFileName(this.tabPanePrograms.getSelectionModel().getSelectedItem().getText().substring(1));
+			fileChooser.getExtensionFilters().add(extFilter);
+			file = fileChooser.showSaveDialog(null);
+			
+			FileWriter fileWriter;
+
+			try {
+				fileWriter = new FileWriter(file);
+				fileWriter.write(textArea.getText());
 				fileWriter.close();
 			} catch (IOException ex) {
 			}
 		}
-
+		this.tabPanePrograms.getSelectionModel().getSelectedItem().setText(file.getName());
+		this.tabPanePrograms.getSelectionModel().getSelectedItem().setId(file.toString());
 	}
 
 	// fecha o programa.
