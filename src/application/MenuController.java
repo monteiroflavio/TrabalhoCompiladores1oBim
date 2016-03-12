@@ -6,9 +6,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -66,7 +69,7 @@ public class MenuController implements Initializable {
 	@FXML
 	AnchorPane anchorPaneConsole = new AnchorPane();
 	@FXML
-	ListView listViewConsole = new ListView();
+	ListView<String> listViewConsole = new ListView();
 	@FXML
 	Tab tabDebug = new Tab();
 	@FXML
@@ -225,7 +228,11 @@ public class MenuController implements Initializable {
 	public void menuCompileOnAction(){
 		TextArea textArea = (TextArea)this.tabPanePrograms.
 			getSelectionModel().getSelectedItem().getContent();
-		System.out.println(CompilerController.getInstance().
-				getTokens(textArea.getText()));
+		List<String> tokens = CompilerController.getInstance().
+				getTokens(textArea.getText());
+		ObservableList<String> observableListTokens;
+		observableListTokens = FXCollections.observableArrayList();
+		observableListTokens.addAll(tokens);
+		listViewConsole.setItems(observableListTokens);
 	}
 }

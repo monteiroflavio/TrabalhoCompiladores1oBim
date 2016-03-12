@@ -19,17 +19,19 @@ public class AnalisadorLexico {
 		int characterCounter = 0;
 		ArrayList<String> tokens = new ArrayList<String>();
 		while(characterCounter < palavra.length()){
-			System.out.println(palavra.charAt(characterCounter));
+			int characterCounterBackup = characterCounter; 
 			switch (palavra.charAt(characterCounter)){
 				case '=':
+				case '<':
+				case '>':
 					palavraReconhecida = AutomatoOperadores.getInstance().
 						reconhecePalavra(palavra, characterCounter);
 					tokens.add(TabelaDeSimbolos.getInstance().
 						getSimbolo(palavraReconhecida.getPalavra()));
 					characterCounter = palavraReconhecida.getPosicao();
 			}
-			
-			++characterCounter;
+			if(characterCounter == characterCounterBackup)
+				++characterCounter;
 		}
 		return tokens;
 	}

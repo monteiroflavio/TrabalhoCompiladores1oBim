@@ -39,7 +39,7 @@ public class AutomatoOperadores {
 						instance.automato.getEstado(5), "=", 4);
 				instance.automato.addTransicao(instance.automato.getEstado(0), 
 						instance.automato.getEstado(6), ">", 5);
-				instance.automato.addTransicao(instance.automato.getEstado(6), 
+					instance.automato.addTransicao(instance.automato.getEstado(6), 
 						instance.automato.getEstado(7), "=", 6);
 			} catch (EstadoNaoExistenteException e){}
 		}
@@ -56,9 +56,9 @@ public class AutomatoOperadores {
 			} catch (TransicaoNaoExistenteException e){
 				return new PalavraReconhecida(palavraReconhecida, posicao);
 			}
+			++posicao;
 			if(instance.automato.isEstadoFinal(estadoAtualId))
 				return new PalavraReconhecida(palavraReconhecida, posicao);
-			++posicao;
 		}
 		return new PalavraReconhecida(palavraReconhecida, posicao);
 	}

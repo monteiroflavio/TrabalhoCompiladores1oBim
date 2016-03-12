@@ -12,13 +12,13 @@ public class Automato {
 	private HashMap<Integer, Aresta> transicoes;
 	
 	public void addEstado(int id){
-		if(estados == null)
-			estados = new HashMap<Integer, Vertice>();
+		if(this.estados == null)
+			this.estados = new HashMap<Integer, Vertice>();
 		this.estados.put(id, new Vertice(id));
 	}
 	public void addEstadoFinal(int id) throws EstadoNaoExistenteException{
-		if(estadosFinais == null)
-			estadosFinais = new HashMap<Integer, Vertice>();
+		if(this.estadosFinais == null)
+			this.estadosFinais = new HashMap<Integer, Vertice>();
 		if(!this.estados.containsKey(id))
 			throw new EstadoNaoExistenteException(id);
 		this.estadosFinais.put(id, this.estados.get(id));
@@ -66,7 +66,8 @@ public class Automato {
 		for(Integer transicaoId : this.transicoes.keySet()){
 			if((this.transicoes.get(transicaoId).getOrigem().
 					getId()==estadoAtualId)
-			&& (this.transicoes.get(transicaoId).getSimbolo().equals(simbolo))){
+			&& (this.transicoes.get(transicaoId).getSimbolo().equals(
+					Character.toString(simbolo)))){
 				estadoAtualId = this.transicoes.get(transicaoId).
 					getDestino().getId();
 				break;
