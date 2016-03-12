@@ -75,12 +75,8 @@ public class MenuController implements Initializable {
 	@FXML
 	AnchorPane anchorDebug = new AnchorPane();
 	@FXML
-<<<<<<< HEAD
-	ListView<String> listViewDebug = new ListView<String>();
-=======
 	ListView listViewDebug = new ListView();
 	int newFileCounter;
->>>>>>> origin/master
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -108,19 +104,16 @@ public class MenuController implements Initializable {
 				@Override
 				public void handle(Event event) {
 					if (!tab.getText().contains("*")) {
-<<<<<<< HEAD
+
 						String aux = tab.getText();//TÁ USANDO ESSA MERDA?
 						// tab.setText("*" + aux);
-=======
-						String aux = tab.getText();
 						tab.setText("*" + aux);
->>>>>>> origin/master
+
 					}
 				}
 
 			
-			}
-			);
+			});
 
 			tab.setId(file.toString());
 			tab.setText(file.getName());
