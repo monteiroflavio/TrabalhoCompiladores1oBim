@@ -63,20 +63,24 @@ public class MenuController implements Initializable {
 	@FXML
 	AnchorPane anchorPaneLog = new AnchorPane();
 	@FXML
-	ListView listViewLog = new ListView();
+	ListView<String> listViewLog = new ListView<String>();
 	@FXML
 	Tab tabConsole = new Tab();
 	@FXML
 	AnchorPane anchorPaneConsole = new AnchorPane();
 	@FXML
-	ListView<String> listViewConsole = new ListView();
+	ListView<String> listViewConsole = new ListView<String>();
 	@FXML
 	Tab tabDebug = new Tab();
 	@FXML
 	AnchorPane anchorDebug = new AnchorPane();
 	@FXML
+<<<<<<< HEAD
+	ListView<String> listViewDebug = new ListView<String>();
+=======
 	ListView listViewDebug = new ListView();
 	int newFileCounter;
+>>>>>>> origin/master
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -104,8 +108,13 @@ public class MenuController implements Initializable {
 				@Override
 				public void handle(Event event) {
 					if (!tab.getText().contains("*")) {
+<<<<<<< HEAD
+						String aux = tab.getText();//TÁ USANDO ESSA MERDA?
+						// tab.setText("*" + aux);
+=======
 						String aux = tab.getText();
 						tab.setText("*" + aux);
+>>>>>>> origin/master
 					}
 				}
 
@@ -196,7 +205,9 @@ public class MenuController implements Initializable {
 	// Salvar arquivo
 	public void menuSaveOnAction() {
 		
-		TextArea textArea = (TextArea) this.tabPanePrograms.getSelectionModel().getSelectedItem().getContent();
+		TextArea textArea = (TextArea) this.tabPanePrograms.
+				getSelectionModel().getSelectedItem().getContent();
+		//TA USANDO ESSA MERDA DE CIMA TB??
 
 		File file = new File(this.tabPanePrograms.getSelectionModel().getSelectedItem().getId());
 		

@@ -62,7 +62,7 @@ public class Automato {
 	}
 	public int transita(char simbolo, int estadoAtualId) 
 			throws TransicaoNaoExistenteException{
-		int estadoAtualIdInicial = estadoAtualId;
+		boolean found = false;
 		for(Integer transicaoId : this.transicoes.keySet()){
 			if((this.transicoes.get(transicaoId).getOrigem().
 					getId()==estadoAtualId)
@@ -70,10 +70,11 @@ public class Automato {
 					Character.toString(simbolo)))){
 				estadoAtualId = this.transicoes.get(transicaoId).
 					getDestino().getId();
+				found = true;
 				break;
 			}
 		}
-		if(estadoAtualIdInicial ==  estadoAtualId)
+		if(found == false)
 			throw new TransicaoNaoExistenteException(estadoAtualId,simbolo);
 		return estadoAtualId;
 	}
