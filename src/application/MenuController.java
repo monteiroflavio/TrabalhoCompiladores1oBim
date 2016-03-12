@@ -63,19 +63,19 @@ public class MenuController implements Initializable {
 	@FXML
 	AnchorPane anchorPaneLog = new AnchorPane();
 	@FXML
-	ListView listViewLog = new ListView();
+	ListView<String> listViewLog = new ListView<String>();
 	@FXML
 	Tab tabConsole = new Tab();
 	@FXML
 	AnchorPane anchorPaneConsole = new AnchorPane();
 	@FXML
-	ListView<String> listViewConsole = new ListView();
+	ListView<String> listViewConsole = new ListView<String>();
 	@FXML
 	Tab tabDebug = new Tab();
 	@FXML
 	AnchorPane anchorDebug = new AnchorPane();
 	@FXML
-	ListView listViewDebug = new ListView();
+	ListView<String> listViewDebug = new ListView<String>();
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -103,7 +103,7 @@ public class MenuController implements Initializable {
 				@Override
 				public void handle(Event event) {
 					if (!tab.getText().contains("*")) {
-						String aux = tab.getText();
+						String aux = tab.getText();//TÁ USANDO ESSA MERDA?
 						// tab.setText("*" + aux);
 					}
 				}
@@ -193,7 +193,9 @@ public class MenuController implements Initializable {
 	@FXML
 	public void menuSaveOnAction() {
 		
-		TextArea textArea = (TextArea) this.tabPanePrograms.getSelectionModel().getSelectedItem().getContent();
+		TextArea textArea = (TextArea) this.tabPanePrograms.
+				getSelectionModel().getSelectedItem().getContent();
+		//TA USANDO ESSA MERDA DE CIMA TB??
 
 		File file = new File(this.tabPanePrograms.getSelectionModel().getSelectedItem().getId());
 		boolean exists = file.exists();
