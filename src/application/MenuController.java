@@ -109,7 +109,9 @@ public class MenuController implements Initializable {
 					}
 				}
 
-			});
+			
+			}
+			);
 
 			tab.setId(file.toString());
 			tab.setText(file.getName());
