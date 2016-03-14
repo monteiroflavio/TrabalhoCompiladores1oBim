@@ -1,3 +1,6 @@
-/application/
 /analisadores/
+/application/
 /automatos/
+/exceptions/
+/tabelas/
+/util/
